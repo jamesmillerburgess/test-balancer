@@ -18,7 +18,7 @@ const xml =
 
 console.log(xml);
 
-fs.writeFile("/tmp/10.xml", xml, function (err) {
+fs.writeFile("./tmp/10.xml", xml, function (err) {
   if (err) {
     return console.log(err);
   }
