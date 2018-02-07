@@ -55,9 +55,6 @@ results.forEach(result => {
 
 averageResults.sort((a, b) => b.time - a.time);
 
-console.log('averageResults');
-console.log(averageResults);
-
 // Split into groups
 const groups = Array(numGroups).fill([]);
 const totals = Array(numGroups).fill(0);
@@ -70,8 +67,10 @@ averageResults.forEach(test => {
   const min = getMin();
   groups[min].push(test);
   totals[min] += test.time;
+  console.log(totals);
 });
 
+console.log('Groups:');
 console.log(groups);
 
 groups.forEach((group, i) => {
@@ -81,10 +80,4 @@ groups.forEach((group, i) => {
   console.log(text);
 });
 
-fs.writeFile("./test-groups/data.json", JSON.stringify(allResults), err => {
-  if (err) {
-    return console.log(err);
-  }
-
-  console.log("The file was saved!");
-}); 
+fs.writeFileSync("./test-groups/data.json", JSON.stringify(allResults)); 
