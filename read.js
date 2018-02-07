@@ -5,8 +5,6 @@ const args = process.argv.slice(2);
 
 const numGroups = +args[args.indexOf('--num-groups') + 1];
 
-console.log(`numGroups: ${numGroups}`);
-
 const parser = new xml2js.Parser();
 
 // Load most recent junit results
@@ -31,9 +29,6 @@ try {
 } catch (err) {
   console.log(err);
 }
-
-console.log('previousResults');
-console.log(previousResults);
 
 // Add new results and limit the record to five
 const allResults = [results, ...previousResults].slice(0, 5);
@@ -63,20 +58,21 @@ averageResults.sort((a, b) => b.time - a.time);
 console.log('averageResults');
 console.log(averageResults);
 
-
 // Split into groups
 const groups = Array(numGroups).fill([]);
 const totals = Array(numGroups).fill(0);
-const getMin = () => totals.reduce((max, total, i) => total < totals[max] ? i : max, 0);
+const getMin = () =>
+  totals.reduce((min, total, i) => total < totals[min] ? i : min, Infinity);
 
-averageResults
-  .forEach(test => {
+averageResults.forEach(test => {
 
-    // Naive but simple allocation
-    const min = getMin();
-    groups[min].push(test);
-    totals[min] += !isNaN(test.time) ? test.time : 0;
-  });
+  // Naive but simple allocation
+  const min = getMin();
+  groups[min].push(test);
+  totals[min] += !isNaN(test.time) ? test.time : 0;
+});
+
+console.log(groups);
 
 groups.forEach((group, i) => {
   const text = `^${group.map(test => test.name).join('$|^')}$`;
