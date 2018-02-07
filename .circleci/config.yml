@@ -10,8 +10,8 @@ jobs:
           name: Environment Changes
           command: |
             # Make a place to core dumps to live.
-            sudo mkdir -p ./tmp
-            sudo chmod a+rwx ./tmp
+            sudo mkdir -p /tmp
+            sudo chmod a+rwx /tmp
       - run:
           command: ls
       - run:
