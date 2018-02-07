@@ -15,7 +15,6 @@ for (let i = 0; i < 4; i++) {
           results.push({ name, time: +time })
         })
       );
-    console.log(tests);
   });
 }
 
