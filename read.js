@@ -47,7 +47,8 @@ results.forEach(result => {
       times.push(time);
     }
   })
-  const averageTime = times.reduce((prev, x) => prev + x, 0) / times.length;
+  const averageTime =
+    Math.floor(times.reduce((p, x) => p + x, 0) / times.length * 1000) / 1000;
   averageResults.push({ name, time: averageTime });
 })
 
