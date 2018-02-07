@@ -6,6 +6,12 @@ jobs:
       - image: circleci/node:7.10
     steps:
       - run:
+          name: Environment Changes
+          command: |
+            # Make a place to core dumps to live.
+            sudo mkdir -p /tmp
+            sudo chmod a+rwx /tmp
+      - run:
           command: npm run write
       - persist_to_workspace:
           root: .

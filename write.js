@@ -16,7 +16,7 @@ const xml =
 </testsuite>
 </testsuites>`;
 
-fs.writeFile("./10.xml", xml, function (err) {
+fs.writeFile("./tmp/10.xml", xml, function (err) {
   if (err) {
     return console.log(err);
   }

@@ -3,7 +3,7 @@ var fs = require('fs'),
 
 var parser = new xml2js.Parser();
 
-fs.readFile('./10.xml', function (err, data) {
+fs.readFile('./tmp/10.xml', function (err, data) {
   parser.parseString(data, function (err, result) {
     console.log(result);
     let tests = [];
