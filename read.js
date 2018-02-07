@@ -5,17 +5,16 @@ var parser = new xml2js.Parser();
 
 let tests = [];
 for (let i = 0; i < 4; i++) {
-  fs.readFile(`./tmp/${i}.xml`, function (err, data) {
-    parser.parseString(data, function (err, result) {
-      result.testsuites.testsuite
-        .map(testsuite => testsuite.testcase)
-        .forEach(testcase =>
-          testcase.forEach(({ $: { name, time } }) =>
-            tests.push({ name, time: +time })
-          )
-        );
-      console.log(tests);
-    });
+  const data = fs.readFileSync(`./tmp/${i}.xml`);
+  parser.parseString(data, function (err, result) {
+    result.testsuites.testsuite
+      .map(testsuite => testsuite.testcase)
+      .forEach(testcase =>
+        testcase.forEach(({ $: { name, time } }) =>
+          tests.push({ name, time: +time })
+        )
+      );
+    console.log(tests);
   });
 }
 
