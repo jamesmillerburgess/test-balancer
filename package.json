@@ -1,0 +1,11 @@
+{
+  "name": "Test-Balancer",
+  "version": "0.0.0",
+  "scripts": {
+    "write": "node write.js",
+    "read": "node read.js"
+  },
+  "dependencies": {
+    "xml2js": "^0.4.19"
+  }
+}
