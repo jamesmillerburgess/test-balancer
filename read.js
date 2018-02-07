@@ -34,7 +34,7 @@ let prev = 0;
 tests.forEach(test => {
   const min = getMin();
   groups[min].push(test);
-  totals[min] += test.time;
+  totals[min] += !isNan(test.time) ? test.time : 0;
 });
 console.log(groups);
 console.log(totals);
