@@ -9,14 +9,11 @@ jobs:
       - run:
           name: Environment Changes
           command: |
-            # Make a place to core dumps to live.
             sudo mkdir -p ./results
             sudo chmod a+rwx ./results
       - restore_cache:
           keys:
             - test-groups
-      - run:
-          command: ls ./results
       - run:
           command: node write0.js
       - persist_to_workspace:
@@ -31,14 +28,11 @@ jobs:
       - run:
           name: Environment Changes
           command: |
-            # Make a place to core dumps to live.
             sudo mkdir -p ./results
             sudo chmod a+rwx ./results
       - restore_cache:
           keys:
             - test-groups
-      - run:
-          command: ls
       - run:
           command: node write1.js
       - persist_to_workspace:
@@ -53,14 +47,11 @@ jobs:
       - run:
           name: Environment Changes
           command: |
-            # Make a place to core dumps to live.
             sudo mkdir -p ./results
             sudo chmod a+rwx ./results
       - restore_cache:
           keys:
             - test-groups
-      - run:
-          command: ls
       - run:
           command: node write2.js
       - persist_to_workspace:
@@ -75,14 +66,11 @@ jobs:
       - run:
           name: Environment Changes
           command: |
-            # Make a place to core dumps to live.
             sudo mkdir -p ./results
             sudo chmod a+rwx ./results
       - restore_cache:
           keys:
             - test-groups
-      - run:
-          command: ls
       - run:
           command: node write3.js
       - persist_to_workspace:
@@ -99,11 +87,11 @@ jobs:
       - run:
           name: Environment Changes
           command: |
-            # Make a place to core dumps to live.
             sudo mkdir -p ./test-groups
             sudo chmod a+rwx ./test-groups
-      - run:
-          command: ls
+      - restore_cache:
+          keys:
+            - test-groups
       - run:
           command: npm install
       - run:
