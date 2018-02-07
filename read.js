@@ -31,7 +31,7 @@ try {
 }
 
 // Add new results and limit the record to five
-const allResults = [results, ...previousResults].slice(0, 5);
+const allBuilds = [results, ...previousResults].slice(0, 5);
 
 let averageResults = [];
 
@@ -42,16 +42,18 @@ let averageResults = [];
 results.forEach(result => {
   const { name } = result;
   const times = [];
-  allResults.forEach(result => {
-    const { time } = result.find(test => test.name === name) || {};
+
+  allBuilds.forEach(build => {
+    const { time } = build.find(test => test.name === name) || {};
     if (time) {
       times.push(!isNaN(time) ? time : 0);
     }
   })
+
   const averageTime =
     Math.floor(times.reduce((p, x) => p + x, 0) / times.length * 1000) / 1000;
   averageResults.push({ name, time: averageTime });
-})
+});
 
 averageResults.sort((a, b) => b.time - a.time);
 
@@ -67,6 +69,7 @@ averageResults.forEach(test => {
   const min = getMin();
   groups[min].push(test);
   totals[min] += test.time;
+  console.log(test);
   console.log(totals);
 });
 
@@ -80,4 +83,4 @@ groups.forEach((group, i) => {
   console.log(text);
 });
 
-fs.writeFileSync("./test-groups/data.json", JSON.stringify(allResults)); 
+fs.writeFileSync("./test-groups/data.json", JSON.stringify(allBuilds)); 
