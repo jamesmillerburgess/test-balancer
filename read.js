@@ -31,10 +31,12 @@ const getMin = () => totals.reduce((max, total, i) => total < totals[max] ? i : 
 let i = 1;
 let prev = 0;
 
+// Naive but simple allocation
 tests.forEach(test => {
   const min = getMin();
   groups[min].push(test);
-  totals[min] += !isNan(test.time) ? test.time : 0;
+  totals[min] += !isNaN(test.time) ? test.time : 0;
 });
+
 console.log(groups);
 console.log(totals);
