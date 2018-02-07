@@ -58,7 +58,7 @@ results.forEach(result => {
   averageResults.push({ name, time: averageTime });
 })
 
-averageResults.sort((a, b) => a.time - b.time);
+averageResults.sort((a, b) => b.time - a.time);
 
 console.log('averageResults');
 console.log(averageResults);
