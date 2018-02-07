@@ -1,0 +1,28 @@
+version: 2
+
+jobs:
+  Write:
+    steps:
+      - run:
+          command: npm run write
+      - persist_to_workspace:
+          root: .
+          paths: . 
+
+  Read:
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          command: npm install
+      - run:
+          command: npm run read
+
+workflows:
+  version: 2
+  Build and Test:
+    jobs:
+      - Write
+      - Load-Balance Tests:
+          requires:
+            - Read
