@@ -44,7 +44,9 @@ results.forEach(result => {
   const times = [];
 
   allBuilds.forEach(build => {
-    const { time } = build.find(test => test.name === name) || {};
+    const test = build.find(test => test.name === name) || {};
+    const time = test.time;
+    console.log(test);
     if (time !== undefined) {
       times.push(!isNaN(time) ? time : 0);
     }
@@ -52,6 +54,7 @@ results.forEach(result => {
 
   const averageTime =
     Math.floor(times.reduce((p, x) => p + x, 0) / times.length * 1000) / 1000;
+  console.log(averageTime);
   averageResults.push({ name, time: averageTime });
 });
 
