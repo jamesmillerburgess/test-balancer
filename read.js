@@ -42,9 +42,6 @@ tests.forEach(test => {
   totals[min] += !isNaN(test.time) ? test.time : 0;
 });
 
-console.log(groups);
-console.log(totals);
-
 groups.forEach((group, i) => {
   const text = group.map(test => test.name).join('|');
   fs.writeFileSync(`./test-groups/${i}.txt`, text);
