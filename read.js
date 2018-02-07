@@ -62,7 +62,7 @@ console.log(averageResults);
 const groups = Array(numGroups).fill([]);
 const totals = Array(numGroups).fill(0);
 const getMin = () =>
-  totals.reduce((min, total, i) => total < totals[min] ? i : min, Infinity);
+  totals.reduce((min, total, i) => total < totals[min] ? i : min, 0);
 
 averageResults.forEach(test => {
 
