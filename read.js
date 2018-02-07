@@ -3,17 +3,21 @@ var fs = require('fs'),
 
 var parser = new xml2js.Parser();
 
-fs.readFile('./tmp/10.xml', function (err, data) {
-  parser.parseString(data, function (err, result) {
-    let tests = [];
-    result.testsuites.testsuite
-      .map(testsuite => testsuite.testcase)
-      .forEach(testcase =>
-        testcase.forEach(({ $: { name, time } }) =>
-          tests.push({ name, time: +time })
-        )
-      );
-    tests.sort((a, b) => a.time - b.time)
-    console.log(tests);
+let tests = [];
+for (let i = 0; i < 4; i++) {
+  fs.readFileSync(`./tmp/${i}.xml`, function (err, data) {
+    parser.parseString(data, function (err, result) {
+      result.testsuites.testsuite
+        .map(testsuite => testsuite.testcase)
+        .forEach(testcase =>
+          testcase.forEach(({ $: { name, time } }) =>
+            tests.push({ name, time: +time })
+          )
+        );
+      console.log(tests);
+    });
   });
-});
+}
+
+tests.sort((a, b) => b.time - a.time)
+console.log(tests);

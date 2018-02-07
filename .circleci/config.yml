@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  Write:
+  Write 0:
     docker:
       - image: circleci/node:8.9.4-stretch-browsers
     steps:
@@ -15,14 +15,71 @@ jobs:
       - run:
           command: ls
       - run:
-          command: npm run write
+          command: node write0.js
+      - persist_to_workspace:
+          root: ./tmp
+          paths: .
+
+  Write 1:
+    docker:
+      - image: circleci/node:8.9.4-stretch-browsers
+    steps:
+      - checkout
+      - run:
+          name: Environment Changes
+          command: |
+            # Make a place to core dumps to live.
+            sudo mkdir -p ./tmp
+            sudo chmod a+rwx ./tmp
+      - run:
+          command: ls
+      - run:
+          command: node write1.js
+      - persist_to_workspace:
+          root: ./tmp
+          paths: .
+
+  Write 2:
+    docker:
+      - image: circleci/node:8.9.4-stretch-browsers
+    steps:
+      - checkout
+      - run:
+          name: Environment Changes
+          command: |
+            # Make a place to core dumps to live.
+            sudo mkdir -p ./tmp
+            sudo chmod a+rwx ./tmp
+      - run:
+          command: ls
+      - run:
+          command: node write2.js
+      - persist_to_workspace:
+          root: ./tmp
+          paths: .
+
+  Write 3:
+    docker:
+      - image: circleci/node:8.9.4-stretch-browsers
+    steps:
+      - checkout
+      - run:
+          name: Environment Changes
+          command: |
+            # Make a place to core dumps to live.
+            sudo mkdir -p ./tmp
+            sudo chmod a+rwx ./tmp
+      - run:
+          command: ls
+      - run:
+          command: node write3.js
       - persist_to_workspace:
           root: ./tmp
           paths: .
 
   Read:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.9.4-stretch-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -38,7 +95,13 @@ workflows:
   version: 2
   Build and Test:
     jobs:
-      - Write
+      - Write 0
+      - Write 1
+      - Write 2
+      - Write 3
       - Read:
           requires:
-            - Write
+            - Write 0
+            - Write 1
+            - Write 2
+            - Write 3
