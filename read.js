@@ -26,6 +26,8 @@ try {
   console.log(err);
 }
 
+console.log(previousResults);
+
 // Add new results and limit the record to five
 const allResults = [results, ...previousResults].slice(0, 5);
 
