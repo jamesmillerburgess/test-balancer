@@ -32,7 +32,7 @@ console.log(previousResults);
 const allResults = [results, ...previousResults].slice(0, 5);
 
 
-results.forEach()
+// results.forEach()
 
 // Split into groups
 const groups = [[], [], [], []];
