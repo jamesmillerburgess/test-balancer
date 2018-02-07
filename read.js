@@ -3,7 +3,7 @@ const xml2js = require('xml2js');
 
 const args = process.argv.slice(2);
 
-const numGroups = args[args.indexOf('--num-groups') + 1];
+const numGroups = +args[args.indexOf('--num-groups') + 1];
 
 console.log(`numGroups: ${numGroups}`);
 
@@ -11,7 +11,7 @@ const parser = new xml2js.Parser();
 
 // Load most recent junit results
 let results = [];
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < numGroups; i++) {
   const data = fs.readFileSync(`./results/${i}.xml`);
   parser.parseString(data, function (err, result) {
     result.testsuites.testsuite
@@ -63,8 +63,8 @@ console.log(averageResults);
 
 
 // Split into groups
-const groups = [[], [], [], []];
-const totals = [0, 0, 0, 0];
+const groups = Array(numGroups).fill([]);
+const totals = Array(numGroups).fill(0);
 const getMin = () => totals.reduce((max, total, i) => total < totals[max] ? i : max, 0);
 
 averageResults.forEach(test => {
