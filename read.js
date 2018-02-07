@@ -45,7 +45,7 @@ results.forEach(result => {
 
   allBuilds.forEach(build => {
     const { time } = build.find(test => test.name === name) || {};
-    if (time) {
+    if (time !== undefined) {
       times.push(!isNaN(time) ? time : 0);
     }
   })
