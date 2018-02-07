@@ -84,7 +84,13 @@ const xml = [
   </testsuites>`,
 ];
 
-console.log(fs.readFileSync(`./test-groups/data.json`));
+try {
+  console.log(fs.readFileSync(`./test-groups/data.json`));
+} catch (err) {
+  console.log(err);
+}
+
+
 
 const group = process.argv[2];
 fs.writeFile(`./results/${group}.xml`, xml[group], function (err) {
