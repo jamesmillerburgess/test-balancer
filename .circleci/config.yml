@@ -3,7 +3,7 @@ version: 2
 jobs:
   Write:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.9.4-stretch-browsers
     steps:
       - run:
           name: Environment Changes
