@@ -4,7 +4,7 @@ var fs = require('fs'),
 var parser = new xml2js.Parser();
 
 // Load previous test balance
-const previous = JSON.parse(fs.readFileSync(`./test-groups/${i}.xml`));
+const previous = JSON.parse(fs.readFileSync(`./test-groups/groups.json`));
 console.log(previous);
 
 
