@@ -26,6 +26,7 @@ try {
   console.log(err);
 }
 
+console.log('previousResults');
 console.log(previousResults);
 
 // Add new results and limit the record to five
@@ -59,6 +60,7 @@ results.forEach(result => {
   averageResults.push({ name, time: averageTime });
 })
 
+console.log('averageResults');
 console.log(averageResults);
 
 results.forEach(test => {
@@ -70,7 +72,7 @@ results.forEach(test => {
 });
 
 groups.forEach((group, i) => {
-  const text = group.map(test => test.name).join('|');
+  const text = `^${group.map(test => test.name).join('$|^')}$`;
   fs.writeFileSync(`./test-groups/${i}.txt`, text);
 });
 
