@@ -5,7 +5,7 @@ var parser = new xml2js.Parser();
 
 let tests = [];
 for (let i = 0; i < 4; i++) {
-  fs.readFileSync(`./tmp/${i}.xml`, function (err, data) {
+  fs.readFile(`./tmp/${i}.xml`, function (err, data) {
     parser.parseString(data, function (err, result) {
       result.testsuites.testsuite
         .map(testsuite => testsuite.testcase)
