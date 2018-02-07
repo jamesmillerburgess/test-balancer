@@ -27,6 +27,6 @@ workflows:
   Build and Test:
     jobs:
       - Write
-      - Load-Balance Tests:
+      - Read:
           requires:
-            - Read
+            - Write
