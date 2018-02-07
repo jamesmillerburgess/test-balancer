@@ -16,7 +16,7 @@ jobs:
       - run:
           command: npm install
       - run:
-          command: npm run write
+          command: node write.js
       - persist_to_workspace:
           root: .
           paths: . 
@@ -30,7 +30,7 @@ jobs:
       - run:
           command: npm install
       - run:
-          command: npm run read
+          command: node read.js
 
 workflows:
   version: 2
