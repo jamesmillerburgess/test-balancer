@@ -45,7 +45,7 @@ results.forEach(result => {
   allResults.forEach(result => {
     const { time } = result.find(test => test.name === name) || {};
     if (time) {
-      times.push(time);
+      times.push(!isNaN(time) ? time : 0);
     }
   })
   const averageTime =
@@ -69,7 +69,7 @@ averageResults.forEach(test => {
   // Naive but simple allocation
   const min = getMin();
   groups[min].push(test);
-  totals[min] += !isNaN(test.time) ? test.time : 0;
+  totals[min] += test.time;
 });
 
 console.log(groups);
