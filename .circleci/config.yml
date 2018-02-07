@@ -111,7 +111,7 @@ jobs:
       - save_cache:
           key: test-groups-{{ epoch }}
           paths:
-            - ./wat
+            - ./test-groups
           when: on_success
 
 workflows:
