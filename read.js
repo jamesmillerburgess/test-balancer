@@ -71,9 +71,9 @@ averageResults.forEach(test => {
 groups.forEach((group, i) => {
   const text = `^${group.map(test => test.name).join('$|^')}$`;
   fs.writeFileSync(`./test-groups/${i}.txt`, text);
+  console.log(`Group ${i}:`);
+  console.log(text);
 });
-
-console.log(groups);
 
 fs.writeFile("./test-groups/data.json", JSON.stringify(allResults), err => {
   if (err) {
