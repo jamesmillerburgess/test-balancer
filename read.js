@@ -51,7 +51,7 @@ results.forEach(result => {
   const { name } = result;
   const times = [];
   allResults.forEach(result => {
-    const { time } = result.find(test => test.name === name)
+    const { time } = result.find(test => test.name === name) || {};
     if (time) {
       times.push(time);
     }
