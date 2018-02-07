@@ -105,6 +105,7 @@ jobs:
           key: test-groups-{{ epoch }}
           paths:
             - ./tmp/test-groups
+          when: on_success
 
 workflows:
   version: 2
