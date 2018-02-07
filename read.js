@@ -32,15 +32,6 @@ console.log(previousResults);
 // Add new results and limit the record to five
 const allResults = [results, ...previousResults].slice(0, 5);
 
-
-// results.forEach()
-
-// Split into groups
-const groups = [[], [], [], []];
-const totals = [0, 0, 0, 0];
-const getMin = () => totals.reduce((max, total, i) => total < totals[max] ? i : max, 0);
-
-
 let averageResults = [];
 
 // We assume that all the tests that were run this time will be the ones run 
@@ -63,7 +54,13 @@ results.forEach(result => {
 console.log('averageResults');
 console.log(averageResults);
 
-results.forEach(test => {
+
+// Split into groups
+const groups = [[], [], [], []];
+const totals = [0, 0, 0, 0];
+const getMin = () => totals.reduce((max, total, i) => total < totals[max] ? i : max, 0);
+
+averageResults.forEach(test => {
 
   // Naive but simple allocation
   const min = getMin();
@@ -76,8 +73,7 @@ groups.forEach((group, i) => {
   fs.writeFileSync(`./test-groups/${i}.txt`, text);
 });
 
-
-
+console.log(groups);
 
 fs.writeFile("./test-groups/data.json", JSON.stringify(allResults), err => {
   if (err) {
