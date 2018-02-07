@@ -99,6 +99,8 @@ jobs:
           command: npm install
       - run:
           command: npm run read
+      - restore_cache:
+          key: test-groups
       - save_cache:
           key: test-groups
           paths:
