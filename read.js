@@ -7,8 +7,6 @@ var parser = new xml2js.Parser();
 const previous = JSON.parse(fs.readFileSync(`./test-groups/groups.json`));
 console.log(previous);
 
-
-
 // Load most recent junit results
 let tests = [];
 for (let i = 0; i < 4; i++) {
