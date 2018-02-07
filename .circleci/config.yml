@@ -2,6 +2,8 @@ version: 2
 
 jobs:
   Write:
+    docker:
+      - image: circleci/node:7.10
     steps:
       - run:
           command: npm run write
@@ -10,6 +12,8 @@ jobs:
           paths: . 
 
   Read:
+    docker:
+      - image: circleci/node:7.10
     steps:
       - attach_workspace:
           at: .
