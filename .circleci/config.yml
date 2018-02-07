@@ -34,6 +34,9 @@ jobs:
             # Make a place to core dumps to live.
             sudo mkdir -p ./tmp
             sudo chmod a+rwx ./tmp
+      - restore_cache:
+          keys:
+            - test-groups
       - run:
           command: ls
       - run:
@@ -53,6 +56,9 @@ jobs:
             # Make a place to core dumps to live.
             sudo mkdir -p ./tmp
             sudo chmod a+rwx ./tmp
+      - restore_cache:
+          keys:
+            - test-groups
       - run:
           command: ls
       - run:
@@ -72,6 +78,9 @@ jobs:
             # Make a place to core dumps to live.
             sudo mkdir -p ./tmp
             sudo chmod a+rwx ./tmp
+      - restore_cache:
+          keys:
+            - test-groups
       - run:
           command: ls
       - run:
