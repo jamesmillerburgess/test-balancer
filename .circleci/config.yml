@@ -10,14 +10,14 @@ jobs:
           name: Environment Changes
           command: |
             # Make a place to core dumps to live.
-            sudo mkdir -p /tmp
-            sudo chmod a+rwx /tmp
+            sudo mkdir -p workspace
+            sudo chmod a+rwx /workspace
       - run:
           command: ls
       - run:
           command: npm run write
       - persist_to_workspace:
-          root: .
+          root: workspace
           paths: .
 
   Read:
