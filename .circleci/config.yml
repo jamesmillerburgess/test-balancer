@@ -17,7 +17,7 @@ jobs:
       - run:
           command: echo $(<./test-groups/0.txt)
       - run:
-          command: node write0.js
+          command: node write0.js 0
       - persist_to_workspace:
           root: ./results
           paths: .
