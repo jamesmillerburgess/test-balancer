@@ -3,40 +3,66 @@ var fs = require('fs'),
 
 var parser = new xml2js.Parser();
 
-// Load previous test balance
-try {
-  console.log(fs.readFileSync(`./test-groups/data.json`));
-} catch (err) {
-  console.log(err);
-}
-
 // Load most recent junit results
-let tests = [];
+let results = [];
 for (let i = 0; i < 4; i++) {
   const data = fs.readFileSync(`./results/${i}.xml`);
-
   parser.parseString(data, function (err, result) {
     result.testsuites.testsuite
       .map(testsuite => testsuite.testcase)
       .forEach(testcase =>
-        testcase.forEach(({ $: { name, time } }) =>
-          tests.push({ name, time: +time })
-        )
+        testcase.forEach(({ $: { name, time } }) => {
+          results.push({ name, time: +time })
+        })
       );
     console.log(tests);
   });
 }
 
-tests.sort((a, b) => b.time - a.time)
-console.log(tests);
+// Load previous test balance
+let previousResults;
+try {
+  previousResults = parser.parseString(fs.readFileSync(`./test-groups/data.json`));
+} catch (err) {
+  console.log(err);
+}
+
+// Add new results and limit the record to five
+const allResults = [results, ...previousResults].slice(0, 5);
+
+
+results.forEach()
 
 // Split into groups
 const groups = [[], [], [], []];
 const totals = [0, 0, 0, 0];
 const getMin = () => totals.reduce((max, total, i) => total < totals[max] ? i : max, 0);
 
-// Naive but simple allocation
-tests.forEach(test => {
+
+let averageResults = [];
+
+// We assume that all the tests that were run this time will be the ones run 
+// next time, so we only calculate the averages for those. This is will ignore
+// any tests that were not run most recently but which were run in previous
+// builds
+results.forEach(result => {
+  const { name } = result;
+  const times = [];
+  allResults.forEach(result => {
+    const time = result.find(test => test.name === name)
+    if (time) {
+      times.push(time);
+    }
+  })
+  const averageTime = times.reduce((prev, x) => prev + x, 0) / times.length;
+  averageResults.push({ name, time: averageTime });
+})
+
+console.log(averageResults);
+
+results.forEach(test => {
+
+  // Naive but simple allocation
   const min = getMin();
   groups[min].push(test);
   totals[min] += !isNaN(test.time) ? test.time : 0;
@@ -47,7 +73,10 @@ groups.forEach((group, i) => {
   fs.writeFileSync(`./test-groups/${i}.txt`, text);
 });
 
-fs.writeFile("./test-groups/data.json", JSON.stringify(groups), function (err) {
+
+
+
+fs.writeFile("./test-groups/data.json", JSON.stringify(allResults), err => {
   if (err) {
     return console.log(err);
   }
