@@ -17,7 +17,7 @@ jobs:
       - run:
           command: echo $(<./test-groups/0.txt)
       - run:
-          command: node write0.js 0
+          command: node write.js 0
       - persist_to_workspace:
           root: ./results
           paths: .
@@ -36,7 +36,7 @@ jobs:
           keys:
             - test-groups
       - run:
-          command: node write1.js
+          command: node write.js 1
       - persist_to_workspace:
           root: ./results
           paths: .
@@ -55,7 +55,7 @@ jobs:
           keys:
             - test-groups
       - run:
-          command: node write2.js
+          command: node write.js 2
       - persist_to_workspace:
           root: ./results
           paths: .
@@ -74,7 +74,7 @@ jobs:
           keys:
             - test-groups
       - run:
-          command: node write3.js
+          command: node write.js 3
       - persist_to_workspace:
           root: ./results
           paths: .
