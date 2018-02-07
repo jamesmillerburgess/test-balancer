@@ -4,7 +4,7 @@ var fs = require('fs'),
 var parser = new xml2js.Parser();
 
 // Load previous test balance
-const previous = JSON.parse(fs.readFileSync(`./test-groups/groups.json`));
+const previous = JSON.parse(fs.readFileSync(`./test-groups/data.json`));
 console.log(previous);
 
 // Load most recent junit results
@@ -47,10 +47,10 @@ groups.forEach((group, i) => {
   fs.writeFileSync(`./test-groups/${i}.txt`, text);
 });
 
-// fs.writeFile("./test-groups/groups.json", JSON.stringify(groups), function (err) {
-//   if (err) {
-//     return console.log(err);
-//   }
+fs.writeFile("./test-groups/data.json", JSON.stringify(groups), function (err) {
+  if (err) {
+    return console.log(err);
+  }
 
-//   console.log("The file was saved!");
-// }); 
+  console.log("The file was saved!");
+}); 
