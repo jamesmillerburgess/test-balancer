@@ -26,7 +26,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /
+          at: ./tmp
       - run:
           command: ls
       - run:
