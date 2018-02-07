@@ -3,9 +3,11 @@ var fs = require('fs'),
 
 var parser = new xml2js.Parser();
 
+// Load most recent junit results
 let tests = [];
 for (let i = 0; i < 4; i++) {
   const data = fs.readFileSync(`./tmp/${i}.xml`);
+
   parser.parseString(data, function (err, result) {
     result.testsuites.testsuite
       .map(testsuite => testsuite.testcase)
@@ -20,3 +22,19 @@ for (let i = 0; i < 4; i++) {
 
 tests.sort((a, b) => b.time - a.time)
 console.log(tests);
+
+// Split into groups
+const groups = [[tests[0]], [], [], []];
+const totals = [tests[0].time, 0, 0, 0];
+// const getMax = () => totals.reduce((max, total, i) => total > totals[max] ? i : max, 0);
+const getMin = () => totals.reduce((max, total, i) => total < totals[max] ? i : max, 0);
+let i = 1;
+let prev = 0;
+
+tests.forEach(test => {
+  const min = getMin();
+  groups[min].push(test);
+  totals[min] += test.time;
+});
+console.log(groups);
+console.log(totals);
