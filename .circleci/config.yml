@@ -17,7 +17,7 @@ jobs:
       - run:
           command: npm run write
       - persist_to_workspace:
-          root: tmp
+          root: ./tmp
           paths: .
 
   Read:
