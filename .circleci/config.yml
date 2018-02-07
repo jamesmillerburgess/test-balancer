@@ -102,7 +102,7 @@ jobs:
       - restore_cache:
           key: test-groups
       - save_cache:
-          key: test-groups
+          key: test-groups-{{ epoch }}
           paths:
             - ./tmp/test-groups
 
