@@ -22,7 +22,7 @@ const xml =
 
 console.log(xml);
 
-fs.writeFile("./tmp/3.xml", xml, function (err) {
+fs.writeFile("./results/3.xml", xml, function (err) {
   if (err) {
     return console.log(err);
   }

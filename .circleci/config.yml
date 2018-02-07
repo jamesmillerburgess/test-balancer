@@ -10,17 +10,17 @@ jobs:
           name: Environment Changes
           command: |
             # Make a place to core dumps to live.
-            sudo mkdir -p ./tmp
-            sudo chmod a+rwx ./tmp
+            sudo mkdir -p ./results
+            sudo chmod a+rwx ./results
       - restore_cache:
           keys:
             - test-groups
       - run:
-          command: ls ./tmp
+          command: ls ./results
       - run:
           command: node write0.js
       - persist_to_workspace:
-          root: ./tmp
+          root: ./results
           paths: .
 
   Write 1:
@@ -32,8 +32,8 @@ jobs:
           name: Environment Changes
           command: |
             # Make a place to core dumps to live.
-            sudo mkdir -p ./tmp
-            sudo chmod a+rwx ./tmp
+            sudo mkdir -p ./results
+            sudo chmod a+rwx ./results
       - restore_cache:
           keys:
             - test-groups
@@ -42,7 +42,7 @@ jobs:
       - run:
           command: node write1.js
       - persist_to_workspace:
-          root: ./tmp
+          root: ./results
           paths: .
 
   Write 2:
@@ -54,8 +54,8 @@ jobs:
           name: Environment Changes
           command: |
             # Make a place to core dumps to live.
-            sudo mkdir -p ./tmp
-            sudo chmod a+rwx ./tmp
+            sudo mkdir -p ./results
+            sudo chmod a+rwx ./results
       - restore_cache:
           keys:
             - test-groups
@@ -64,7 +64,7 @@ jobs:
       - run:
           command: node write2.js
       - persist_to_workspace:
-          root: ./tmp
+          root: ./results
           paths: .
 
   Write 3:
@@ -76,8 +76,8 @@ jobs:
           name: Environment Changes
           command: |
             # Make a place to core dumps to live.
-            sudo mkdir -p ./tmp
-            sudo chmod a+rwx ./tmp
+            sudo mkdir -p ./results
+            sudo chmod a+rwx ./results
       - restore_cache:
           keys:
             - test-groups
@@ -86,7 +86,7 @@ jobs:
       - run:
           command: node write3.js
       - persist_to_workspace:
-          root: ./tmp
+          root: ./results
           paths: .
 
   Read:
