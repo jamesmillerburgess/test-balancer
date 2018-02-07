@@ -58,6 +58,8 @@ results.forEach(result => {
   averageResults.push({ name, time: averageTime });
 })
 
+averageResults.sort((a, b) => a.time - b.time);
+
 console.log('averageResults');
 console.log(averageResults);
 
@@ -67,13 +69,14 @@ const groups = Array(numGroups).fill([]);
 const totals = Array(numGroups).fill(0);
 const getMin = () => totals.reduce((max, total, i) => total < totals[max] ? i : max, 0);
 
-averageResults.forEach(test => {
+averageResults
+  .forEach(test => {
 
-  // Naive but simple allocation
-  const min = getMin();
-  groups[min].push(test);
-  totals[min] += !isNaN(test.time) ? test.time : 0;
-});
+    // Naive but simple allocation
+    const min = getMin();
+    groups[min].push(test);
+    totals[min] += !isNaN(test.time) ? test.time : 0;
+  });
 
 groups.forEach((group, i) => {
   const text = `^${group.map(test => test.name).join('$|^')}$`;
