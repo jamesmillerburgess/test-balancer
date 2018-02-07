@@ -40,3 +40,11 @@ tests.forEach(test => {
 
 console.log(groups);
 console.log(totals);
+
+fs.writeFile("./tmp/test-groups/groups.json", JSON.stringify(groups), function (err) {
+  if (err) {
+    return console.log(err);
+  }
+
+  console.log("The file was saved!");
+}); 

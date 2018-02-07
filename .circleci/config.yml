@@ -12,8 +12,11 @@ jobs:
             # Make a place to core dumps to live.
             sudo mkdir -p ./tmp
             sudo chmod a+rwx ./tmp
+      - restore_cache:
+          keys:
+            - test-groups
       - run:
-          command: ls
+          command: ls ./tmp
       - run:
           command: node write0.js
       - persist_to_workspace:
@@ -90,6 +93,10 @@ jobs:
           command: npm install
       - run:
           command: npm run read
+      - save_cache:
+          key: test-groups
+          paths:
+            - ./tmp/test-groups
 
 workflows:
   version: 2
