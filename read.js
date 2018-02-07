@@ -4,8 +4,11 @@ var fs = require('fs'),
 var parser = new xml2js.Parser();
 
 // Load previous test balance
-const previous = JSON.parse(fs.readFileSync(`./test-groups/data.json`));
-console.log(previous);
+try {
+  console.log(fs.readFileSync(`./test-groups/data.json`));
+} catch (err) {
+  console.log(err);
+}
 
 // Load most recent junit results
 let tests = [];
