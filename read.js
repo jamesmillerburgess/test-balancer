@@ -21,7 +21,7 @@ for (let i = 0; i < 4; i++) {
 // Load previous test balance
 let previousResults;
 try {
-  previousResults = parser.parseString(fs.readFileSync(`./test-groups/data.json`));
+  previousResults = JSON.parse(fs.readFileSync(`./test-groups/data.json`));
 } catch (err) {
   console.log(err);
 }
