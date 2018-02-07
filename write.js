@@ -84,10 +84,8 @@ const xml = [
   </testsuites>`,
 ];
 
-console.log(xml);
-
 const group = process.argv[2];
-fs.writeFile(`./results/${group}.xml`, xml, function (err) {
+fs.writeFile(`./results/${group}.xml`, xml[group], function (err) {
   if (err) {
     return console.log(err);
   }
