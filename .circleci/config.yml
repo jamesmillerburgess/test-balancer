@@ -12,6 +12,10 @@ jobs:
             sudo mkdir -p /tmp
             sudo chmod a+rwx /tmp
       - run:
+          command: npm -v
+      - run:
+          command: npm install
+      - run:
           command: npm run write
       - persist_to_workspace:
           root: .

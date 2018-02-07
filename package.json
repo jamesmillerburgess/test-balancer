@@ -1,6 +1,6 @@
 {
   "name": "Test-Balancer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "write": "node write.js",
     "read": "node read.js"
