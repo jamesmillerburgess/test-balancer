@@ -41,7 +41,7 @@ tests.forEach(test => {
 console.log(groups);
 console.log(totals);
 
-fs.writeFile("./tmp/test-groups/groups.json", JSON.stringify(groups), function (err) {
+fs.writeFile("./test-groups/groups.json", JSON.stringify(groups), function (err) {
   if (err) {
     return console.log(err);
   }

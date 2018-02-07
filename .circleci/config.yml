@@ -100,8 +100,8 @@ jobs:
           name: Environment Changes
           command: |
             # Make a place to core dumps to live.
-            sudo mkdir -p ./tmp/test-groups
-            sudo chmod a+rwx ./tmp/test-groups
+            sudo mkdir -p ./test-groups
+            sudo chmod a+rwx ./test-groups
       - run:
           command: ls
       - run:
@@ -113,7 +113,7 @@ jobs:
       - save_cache:
           key: test-groups-{{ epoch }}
           paths:
-            - ./tmp/test-groups
+            - ./test-groups
           when: on_success
 
 workflows:
