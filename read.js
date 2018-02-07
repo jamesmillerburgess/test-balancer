@@ -1,7 +1,13 @@
-var fs = require('fs'),
-  xml2js = require('xml2js');
+const fs = require('fs');
+const xml2js = require('xml2js');
 
-var parser = new xml2js.Parser();
+const args = process.argv.slice(2);
+
+const numGroups = args[args.indexOf('--num-groups') + 1];
+
+console.log(`numGroups: ${numGroups}`);
+
+const parser = new xml2js.Parser();
 
 // Load most recent junit results
 let results = [];

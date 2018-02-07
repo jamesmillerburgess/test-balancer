@@ -100,7 +100,7 @@ jobs:
       - run:
           command: npm install
       - run:
-          command: npm run read
+          command: npm run read --num-groups 4
       - save_cache:
           key: test-groups-{{ epoch }}
           paths:
