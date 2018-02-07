@@ -15,6 +15,8 @@ jobs:
           keys:
             - test-groups
       - run:
+          command: echo $(<./test-groups/0.txt)
+      - run:
           command: node write0.js
       - persist_to_workspace:
           root: ./results

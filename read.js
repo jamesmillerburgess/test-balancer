@@ -42,10 +42,15 @@ tests.forEach(test => {
 console.log(groups);
 console.log(totals);
 
-fs.writeFile("./test-groups/groups.json", JSON.stringify(groups), function (err) {
-  if (err) {
-    return console.log(err);
-  }
+groups.forEach((group, i) => {
+  const text = group.map(test => test.name).join('|');
+  fs.writeFileSync(`./test-groups/${i}.txt`, text);
+});
 
-  console.log("The file was saved!");
-}); 
+// fs.writeFile("./test-groups/groups.json", JSON.stringify(groups), function (err) {
+//   if (err) {
+//     return console.log(err);
+//   }
+
+//   console.log("The file was saved!");
+// }); 
