@@ -58,7 +58,7 @@ results.forEach(result => {
 averageResults.sort((a, b) => b.time - a.time);
 
 // Split into groups
-const groups = Array(numGroups).fill([]);
+const groups = Array(numGroups).fill(Array(0));
 const totals = Array(numGroups).fill(0);
 const getMin = () =>
   totals.reduce((min, total, i) => total < totals[min] ? i : min, 0);
