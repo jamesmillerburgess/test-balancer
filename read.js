@@ -67,7 +67,7 @@ averageResults.forEach(test => {
 
   // Naïve but simple allocation
   const min = getMin();
-  groups[min] ? groups[min] = [test] : groups[min].push(test);
+  groups[min] ? groups[min].push(test) : groups[min] = [test];
   totals[min] += test.time;
   console.log(test);
   console.log(totals);
