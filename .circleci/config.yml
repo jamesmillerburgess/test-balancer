@@ -100,7 +100,7 @@ jobs:
       - run:
           command: npm install
       - run:
-          command: npm run read --num-groups 4
+          command: npm run read --num-groups 4 --running-avg-length 5
       - save_cache:
           key: test-groups-{{ epoch }}
           paths:
