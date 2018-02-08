@@ -3,6 +3,7 @@ const xml2js = require('xml2js');
 
 const parser = new xml2js.Parser();
 
+// Grab the options
 const args = process.argv.slice(2);
 const numGroups = +args[args.indexOf('--num-groups') + 1];
 const runningAvgLenth = +args[args.indexOf('--running-avg-length') + 1];
